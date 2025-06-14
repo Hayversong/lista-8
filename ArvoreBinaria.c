@@ -191,6 +191,11 @@ void imprimir_ArvBin(ArvBin *raiz, int nivel){
 
     imprimir_ArvBin(&(*raiz)->esq, nivel + 1);
     imprimir_ArvBin(&(*raiz)->dir, nivel + 1);
+
+    /*a ideia é fazer a arvore ser percorrida inteira e imprimir cada nodo com um recuo
+    que seja proporcional ao nivel dele na arvore, faz a verificação para saber se é nodo ou folha
+    e a impressao segue
+    */
 }
 
 
@@ -205,4 +210,7 @@ void imprimir_decrescente_ArvBin(ArvBin *raiz){
     }
 
     imprimir_decrescente_ArvBin(&((*raiz) -> esq));
+
+    /*Percorre a arvore de forma contrária, vai primeiro para a direita, depois o nodo atual
+    e então a parte da esquerda, assim faz ficar decrescente*/
 }
