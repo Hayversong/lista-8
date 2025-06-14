@@ -15,4 +15,6 @@ void emOrdem_ArvBin(ArvBin *raiz);
 void posOrdem_ArvBin(ArvBin *raiz);
 int folhas_ArvBin(ArvBin *raiz);
 int valor_especifico_ArvBin(ArvBin *raiz, int valor);
+void imprimir_ArvBin(ArvBin *raiz, int nivel);
+void imprimir_decrescente_ArvBin(ArvBin *raiz)
 

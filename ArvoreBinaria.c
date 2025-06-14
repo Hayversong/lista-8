@@ -175,3 +175,34 @@ int valor_especifico_ArvBin(ArvBin *raiz, int valor){
     }
     return valor_especifico_ArvBin(&((*raiz) -> esq), valor);
 }
+
+void imprimir_ArvBin(ArvBin *raiz, int nivel){
+    if(raiz == NULL || *raiz == NULL) return;
+    for (int i = 0; i < nivel; i++)//recuo que vai ser proporcional ao nivel
+        printf("   ");
+
+    if((*raiz) -> esq == NULL && (*raiz) -> dir == NULL){
+        printf("folha: ");
+    }else{
+        printf("no: ");
+    }
+
+    printf("%d\n", (*raiz)->info);
+
+    imprimir_ArvBin(&(*raiz)->esq, nivel + 1);
+    imprimir_ArvBin(&(*raiz)->dir, nivel + 1);
+}
+
+
+void imprimir_decrescente_ArvBin(ArvBin *raiz){
+    if(raiz == NULL || *raiz == NULL) return;
+
+    imprimir_decrescente_ArvBin(&((*raiz) -> dir)); //anda pelo galho da direita primeiro
+
+    if((*raiz) -> esq == NULL && (raiz*) -> == NULL)//faz a verificação pra ver se é folha
+    {
+        printf("%d ", (*raiz) -> info);
+    }
+
+    imprimir_decrescente_ArvBin(&((*raiz) -> esq));
+}
