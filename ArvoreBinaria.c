@@ -8,6 +8,7 @@ struct NO{
     struct NO *dir;
 };
 
+
 ArvBin* cria_ArvBin(){
     ArvBin* raiz = (ArvBin*) malloc(sizeof(ArvBin));
     if(raiz != NULL)
@@ -204,8 +205,7 @@ void imprimir_decrescente_ArvBin(ArvBin *raiz){
 
     imprimir_decrescente_ArvBin(&((*raiz) -> dir)); //anda pelo galho da direita primeiro
 
-    if((*raiz) -> esq == NULL && (raiz*) -> == NULL)//faz a verificação pra ver se é folha
-    {
+    if((*raiz) -> esq == NULL && (*raiz) -> dir == NULL){//faz a verificação pra ver se é folha
         printf("%d ", (*raiz) -> info);
     }
 
@@ -214,3 +214,49 @@ void imprimir_decrescente_ArvBin(ArvBin *raiz){
     /*Percorre a arvore de forma contrária, vai primeiro para a direita, depois o nodo atual
     e então a parte da esquerda, assim faz ficar decrescente*/
 }
+
+int arvore_igual(ArvBin *raiz, ArvBin *raiz2){
+    if(raiz == NULL || raiz2 == NULL) return 0;
+    struct NO* no = *raiz;
+    struct NO* no2 = *raiz2;
+    if(no==NULL && no2==NULL) return 1;
+    if(no==NULL || no2==NULL) return 0;
+    if(no->info != no2->info) return 0;
+    arvore_igual(&((*raiz) -> esq), &((*raiz2) -> esq));
+    arvore_igual(&((*raiz) -> dir), &((*raiz2) -> dir));
+    /*
+    Lógica usada: cria um no para cada arvore, caso os dois sejam null,
+    quer dizer que as duas chegaram ao final ao mesmo tempo sem encontrar
+    valores diferentes, aí retorna 1 (igual), mas caso alguma chegue ao final
+    antes da outra, signfica que tem tamanhos diferentes, retornando 0 (diferente),
+    caso não caía em nenhum desses ifs ele compara o valor de cada no, se passar
+    chama a funcao novamente passando a esquerda e a direita.
+    */
+}
+int remove_pares(ArvBin *raiz){
+    if(raiz == NULL|| *raiz == NULL) return 0;
+    remove_pares(&((*raiz) -> esq));
+    remove_pares(&((*raiz) -> dir));
+    if((*raiz)->info % 2 == 0) remove_ArvBin(raiz, (*raiz)->info);
+    return 1;
+    /*
+    Lógica usada: percorre a arvore conferindo o resto dos valores por 2,
+    toda vez que for igual a zero chama a função de remover valor passando
+    o valor.
+    */
+}
+int arvore_similar(ArvBin *raiz, ArvBin *raiz2){
+    if(raiz == NULL || raiz2 == NULL) return 0;
+    if(*raiz == NULL && *raiz2 == NULL) return 1;
+    if(*raiz == NULL || *raiz2 == NULL) return 0;
+    arvore_similar(&((*raiz)->esq), &((*raiz2)->esq));
+    arvore_similar(&((*raiz)->dir), &((*raiz2)->dir));
+    /*
+    Lógica usada: percorre as duas arvores até chegar ao final,
+    caso as duas cheguem ao final ao mesmo tempo, possuem a mesma
+    estrutra, caso cheguem uma chegue antes da outra, possuem
+    estrutureas diferentes.
+    */
+}
+
+
