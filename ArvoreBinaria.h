@@ -19,3 +19,4 @@ void imprimir_ArvBin(ArvBin *raiz, int nivel);
 void imprimir_decrescente_ArvBin(ArvBin *raiz);
 int arvore_igual(ArvBin *raiz, ArvBin *raiz2);
 int remove_pares(ArvBin *raiz);
+int arvore_similar(ArvBin *raiz, ArvBin *raiz2)
